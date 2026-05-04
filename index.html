@@ -1041,7 +1041,7 @@ img { max-width: 100%; height: auto; display: block; }
       <h2>Recent Projects</h2>
       <p>A sampling of residential and commercial projects across the Tucson area.</p>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="gallery-grid">
       <div class="gallery-item reveal"><span>Kitchen Remodel<br/>&mdash; Tucson 85746</span></div>
       <div class="gallery-item reveal"><span>Master Bath Renovation<br/>&mdash; Oro Valley</span></div>
       <div class="gallery-item reveal"><span>Room Addition<br/>&mdash; Marana</span></div>
@@ -1051,7 +1051,7 @@ img { max-width: 100%; height: auto; display: block; }
       <div class="gallery-item reveal"><span>Retail Tenant Improvement<br/>&mdash; Tucson</span></div>
       <div class="gallery-item reveal"><span>Garage Conversion<br/>&mdash; Marana</span></div>
     </div>
-    <p class="gallery-note"><strong>Photos coming soon.</strong> Replace each placeholder with a real project image (ideally 800&times;600 JPG or WebP, under 200KB each). Ask the client for before/after pairs where possible &mdash; they convert best.</p>
+    <p class="gallery-note" id="gallery-note"><strong>Photos coming soon.</strong> Replace each placeholder with a real project image (ideally 800&times;600 JPG or WebP, under 200KB each). Ask the client for before/after pairs where possible &mdash; they convert best.</p>
   </div>
 </section>
 
@@ -1315,6 +1315,33 @@ img { max-width: 100%; height: auto; display: block; }
 </a>
 
 <script>
+// ====== Gallery: load admin-managed items from localStorage ======
+(function() {
+  try {
+    var raw = localStorage.getItem('ccm_gallery');
+    if (!raw) return;
+    var items = JSON.parse(raw);
+    if (!Array.isArray(items) || items.length === 0) return;
+    var gridEl = document.getElementById('gallery-grid');
+    if (!gridEl) return;
+
+    function esc(s) {
+      return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    gridEl.innerHTML = items.map(function(item) {
+      var src = item.imageData || item.imageUrl || '';
+      var bg  = src ? 'background-image:url("' + esc(src) + '");background-size:cover;background-position:center;' : '';
+      var sub = item.subtitle ? '<br/>&mdash; ' + esc(item.subtitle) : '';
+      return '<div class="gallery-item reveal" style="' + bg + '"><span>' + esc(item.title) + sub + '</span></div>';
+    }).join('');
+
+    var allHaveImg = items.every(function(i) { return i.imageData || i.imageUrl; });
+    var noteEl = document.getElementById('gallery-note');
+    if (allHaveImg && noteEl) noteEl.style.display = 'none';
+  } catch(e) { /* fail silently — static HTML remains */ }
+})();
+
 // ====== CONFIG ======
 // Paste your deployed Google Apps Script Web App URL here once Sheets is set up.
 // Leave as 'TBD' to run the form in "demo" mode (shows success without posting).
