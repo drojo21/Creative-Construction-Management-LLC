@@ -571,28 +571,33 @@ img { max-width: 100%; height: auto; display: block; }
   aspect-ratio: 4/3;
   border-radius: var(--radius);
   background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,.5);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: .9rem;
-  text-align: center;
-  padding: 1rem;
   cursor: pointer;
-  transition: transform .3s;
   position: relative;
   overflow: hidden;
 }
-.gallery-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,.03) 20px, rgba(255,255,255,.03) 40px);
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .45s ease;
 }
-.gallery-item:hover { transform: scale(1.02); }
-.gallery-item span { position: relative; z-index: 1; }
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 1.5rem .9rem .7rem;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: .9rem;
+  line-height: 1.25;
+  text-align: left;
+  background: linear-gradient(to top, rgba(17,24,39,.85) 0%, rgba(17,24,39,.45) 55%, transparent 100%);
+}
 .gallery-note {
   text-align: center;
   margin-top: 1.5rem;
@@ -1047,16 +1052,15 @@ img { max-width: 100%; height: auto; display: block; }
       <p>A sampling of residential and commercial projects across the Tucson area.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal"><span>Kitchen Remodel<br/>&mdash; Tucson 85746</span></div>
-      <div class="gallery-item reveal"><span>Master Bath Renovation<br/>&mdash; Oro Valley</span></div>
-      <div class="gallery-item reveal"><span>Room Addition<br/>&mdash; Marana</span></div>
-      <div class="gallery-item reveal"><span>Commercial Build-Out<br/>&mdash; Tucson</span></div>
-      <div class="gallery-item reveal"><span>Casita Construction<br/>&mdash; Vail</span></div>
-      <div class="gallery-item reveal"><span>Whole-Home Remodel<br/>&mdash; Tucson</span></div>
-      <div class="gallery-item reveal"><span>Retail Tenant Improvement<br/>&mdash; Tucson</span></div>
-      <div class="gallery-item reveal"><span>Garage Conversion<br/>&mdash; Marana</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/detached-garage-tucson.jpg" alt="Finished detached three-car garage with stucco exterior, Tucson area" loading="lazy" width="900" height="1200" /><span>New Detached Garage<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/sport-court-tucson.jpg" alt="Resurfaced backyard sport court with mountain and saguaro views, Tucson area" loading="lazy" width="900" height="1200" /><span>Backyard Sport Court<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/subway-tile-bath-tucson.jpg" alt="White subway tile wainscot installation in a bathroom, Tucson area" loading="lazy" width="900" height="1200" /><span>Subway Tile Bath<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/room-addition-windows-tucson.jpg" alt="Room addition with new windows installed and drywall hung, Tucson area" loading="lazy" width="1200" height="900" /><span>Room Addition &mdash; Windows In<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/room-addition-drywall-tucson.jpg" alt="Room addition with drywall and exterior door overlooking desert, Tucson area" loading="lazy" width="1200" height="900" /><span>Room Addition &mdash; Drywall<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/new-framing-tucson.jpg" alt="New wood framing for a residential addition, Tucson area" loading="lazy" width="1200" height="900" /><span>New Framing<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/tiled-restroom-tucson.jpg" alt="Subway-tiled restroom walls with dark grout, Tucson area" loading="lazy" width="1200" height="900" /><span>Tiled Restroom Walls<br/>&mdash; Tucson Area</span></div>
+      <div class="gallery-item reveal"><img src="images/projects/commercial-buildout-tucson.jpg" alt="Commercial interior build-out with exposed ductwork and ceiling grid, Tucson area" loading="lazy" width="900" height="1200" /><span>Commercial Build-Out<br/>&mdash; Tucson Area</span></div>
     </div>
-    <p class="gallery-note"><strong>Photos coming soon.</strong> Replace each placeholder with a real project image (ideally 800&times;600 JPG or WebP, under 200KB each). Ask the client for before/after pairs where possible &mdash; they convert best.</p>
   </div>
 </section>
 
