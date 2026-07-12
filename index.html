@@ -47,8 +47,7 @@
   "url": "https://creativeconstructionmanagementaz.com/",
   "telephone": "+1-520-273-9295",
   "email": "ccmanagementaz@gmail.com",
-  "image": "https://creativeconstructionmanagementaz.com/og-image.jpg",
-  "logo": "https://creativeconstructionmanagementaz.com/logo.png",
+  "image": "https://creativeconstructionmanagementaz.com/og-image.png",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Tucson",
@@ -270,6 +269,21 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 a { color: var(--accent); text-decoration: none; transition: color .2s; }
 a:hover { color: var(--accent-dark); }
 img { max-width: 100%; height: auto; display: block; }
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  transition: top .2s;
+}
+.skip-link:focus { top: 1rem; }
 
 .container { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
 .section { padding: 5rem 0; }
@@ -855,6 +869,8 @@ img { max-width: 100%; height: auto; display: block; }
 </head>
 <body>
 
+<a href="#top" class="skip-link">Skip to main content</a>
+
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -879,7 +895,7 @@ img { max-width: 100%; height: auto; display: block; }
         (520) 273-9295
       </a>
       <a href="#quoteForm" class="btn btn-primary">Get Quote</a>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
@@ -1342,11 +1358,15 @@ window.addEventListener('scroll', () => {
 });
 
 mobileToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
+  const isOpen = navLinks.classList.toggle('open');
+  mobileToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
 document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => navLinks.classList.remove('open'));
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+  });
 });
 
 // ====== Scroll reveal ======

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /reviews.html
+
+Sitemap: https://creativeconstructionmanagementaz.com/sitemap.xml
