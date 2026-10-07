@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# AI assistants and answer engines are welcome — this site publishes
+# structured data (LocalBusiness, Service, FAQ) for exactly this purpose.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://creativeconstructionmanagementaz.com/sitemap.xml
